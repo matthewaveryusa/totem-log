@@ -1,0 +1,30 @@
+{
+  "name": "totem-log",
+  "version": "0.0.1",
+  "description": "Totem log",
+  "main": "./src/log.js",
+  "scripts": {
+    "pretest": "rm -rf coverage",
+    "test": "istanbul cover _mocha -- --recursive -R spec",
+    "posttest": "istanbul check-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthewaveryusa/totem-log.git"
+  },
+  "author": "Matthew Avery & Zenon Parker",
+  "license": "Private, Totem Labs LLC all rights reserved.",
+  "bugs": {
+    "url": "https://github.com/matthewaveryusa/totem-log/issues"
+  },
+  "homepage": "https://github.com/matthewaveryusa/totem-log",
+  "dependencies" : {
+    "loggly": "*",
+    "lodash":"*",
+    "totem-tools":"0.1.0"
+  },
+  "devDependencies": {
+    "should":"*",
+    "sinon":"*"
+  }
+}
