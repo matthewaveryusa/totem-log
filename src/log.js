@@ -1,40 +1,42 @@
 var loggly = require('loggly'),
-    tools = require('totem-tools'),
-    _ = require('lodash');
-    client = loggly.createClient({ token: process.env.LOGGLY_KEY },json:true, subdomain:"totem");
+    _ = require('lodash'),
+    client;
 
-function logMain(level, data) {
-	var stacklist = (new Error()).stack.split('\n');
-  var stack = getStack()[2];
+if(process.env.LOGGLY_KEY) {
+ client = loggly.createClient({ token: process.env.LOGGLY_KEY, json:true, subdomain:"totem"});
+} else {
+  client = { log: function(data){ console.log(data); }};
+}
+
+function logMain(level, data, location) {
   if(_.isPlainObject(data)) {
-	  data._file = stack.getFileName();
-    data._line = stack.getLineNumber();
+    data._location = location;
     data._level = level;
 	 client.log(data);
   } else {
    client.log({
-	    _file: stack.getFileName(),
-      _line: stack.getLineNumber(),
+	    _location: location,
       _level : level,
       message: data.toString()
    });
   }
 };
 
-exports.trace = function(data){
-  logMain('trace',data);
+exports.trace = function(data,location){
+  logMain('trace',data,location);
 };
-exports.debug = function(data){
-  logMain('debug',data);
+exports.debug = function(data,location){
+  logMain('debug',data, location);
 };
-exports.info = function(data){
-  logMain('info',data);
+exports.info = function(data,location){
+  logMain('info',data, location);
 };
-exports.error = function(data){
-  logMain('error',data);
+exports.error = function(data,location){
+  logMain('error',data, location);
 };
-exports.warn = function(data){
-  logMain('warning',data);
+exports.warn = function(data,location){
+  logMain('warning',data, location);
 };
-
-
+exports.metric = function(data,location){
+  logMain('metric',data, location);
+};
