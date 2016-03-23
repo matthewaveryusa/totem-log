@@ -1,6 +1,6 @@
 {
   "name": "totem-log",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Totem log",
   "main": "./src/log.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "dependencies" : {
     "loggly": "*",
     "lodash":"*",
-    "totem-tools":"0.1.0"
+    "totem-tools":"*"
   },
   "devDependencies": {
     "should":"*",
