@@ -2,8 +2,8 @@ var loggly = require('loggly'),
     _ = require('lodash'),
     client;
 
-if(process.env.LOGGLY_KEY) {
- client = loggly.createClient({ token: process.env.LOGGLY_KEY, json:true, subdomain:"totem"});
+if(process.env.LOGGLY_KEY && process.env.LOGGLY_SUBDOMAIN ) {
+ client = loggly.createClient({ token: process.env.LOGGLY_KEY, json:true, subdomain: process.env.LOGGLY_SUBDOMAIN });
 } else {
   client = { log: function(data){ console.log(data); }};
 }
