@@ -1,6 +1,6 @@
 {
   "name": "totem-log",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Totem log",
   "main": "./src/log.js",
   "scripts": {

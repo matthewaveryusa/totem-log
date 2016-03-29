@@ -10,11 +10,15 @@ if(process.env.LOGGLY_KEY && process.env.LOGGLY_SUBDOMAIN ) {
 
 function logMain(level, data, location) {
   if(_.isPlainObject(data)) {
+    data._cluster_name = process.env.CLUSTER_NAME;
+    data._env = process.env.ENV;
     data._location = location;
     data._level = level;
 	 client.log(data);
   } else {
    client.log({
+      _cluster_name : process.env.CLUSTER_NAME || 'unknown',
+      _env : process.env.ENV || 'unknown',
 	    _location: location,
       _level : level,
       message: data.toString()
